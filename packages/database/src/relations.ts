@@ -1,5 +1,5 @@
 import { defineRelations } from "drizzle-orm";
-import * as s from './schema/index.js'
+import * as s from "./schema/index.js";
 
 export const relations = defineRelations(s, (r) => ({
   user: {
@@ -114,9 +114,15 @@ export const relations = defineRelations(s, (r) => ({
       to: r.projectMilestones.id,
     }),
 
-    tasks: r.many.tasks(),
+    tasks: r.many.tasks({
+      from: r.milestones.id,
+      to: r.tasks.milestoneId,
+    }),
 
-    payments: r.many.projectPayments(),
+    payments: r.many.projectPayments({
+      from: r.milestones.id,
+      to: r.projectPayments.milestoneId,
+    }),
   },
 
   task: {

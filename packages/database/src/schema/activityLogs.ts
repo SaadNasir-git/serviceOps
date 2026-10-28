@@ -1,5 +1,5 @@
 import { jsonb, pgEnum, pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
-import { users } from "./users";
+import { users } from "./users.js";
 
 export const activityActionEnum = pgEnum("activity_action", [
     "USER_UPDATED",

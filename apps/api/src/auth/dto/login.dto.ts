@@ -9,8 +9,8 @@ export enum LoginStrategy {
 const loginSchema = z.object({
     email: z.email(),
     password: z.string(),
-    strategy: z.enum(['otp','url']).default('url'),
+    strategy: z.enum(['otp', 'url']).default('url'),
     callBackUrl: z.string().startsWith('/').default('/')
 })
 
-export const LoginDto = createZodDto(loginSchema);
+export class LoginDto extends createZodDto(loginSchema) { }

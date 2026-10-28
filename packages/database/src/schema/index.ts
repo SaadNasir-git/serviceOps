@@ -5,7 +5,6 @@ export * from './projectMembers.js';
 export * from './projectMilestones.js';
 export * from './projectPayments.js';
 export * from './projects.js';
-export * from './relations.js';
 export * from './tasks.js';
 export * from './technicians.js';
 export * from './userDevices.js';

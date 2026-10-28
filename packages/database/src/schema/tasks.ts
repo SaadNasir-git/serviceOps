@@ -1,6 +1,6 @@
 import { integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { milestones } from "./milestones";
-import { users } from "./users";
+import { milestones } from "./milestones.js";
+import { users } from "./users.js";
 
 export const taskStatusEnum = pgEnum("task_status", [
     "pending",

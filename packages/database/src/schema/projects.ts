@@ -1,6 +1,6 @@
 import { integer, numeric, pgEnum, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { users } from "./users";
-import { categories } from "./categories";
+import { users } from "./users.js";
+import { categories } from "./categories.js";
 
 export const projectPriorityEnum = pgEnum("project_priority", [
     "low",

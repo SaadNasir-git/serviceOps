@@ -5,4 +5,4 @@ const verifyOtpSchema = z.object({
     otp: z.string().length(6)
 });
 
-export const VerifyOtpDto = createZodDto(verifyOtpSchema);
+export class VerifyOtpDto extends createZodDto(verifyOtpSchema) {}

@@ -1,5 +1,5 @@
 import { integer, numeric, pgEnum, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { projectMilestones } from "./projectMilestones";
+import { projectMilestones } from "./projectMilestones.js";
 
 export const milestoneStatusEnum = pgEnum("milestone_status", [
     "pending",
