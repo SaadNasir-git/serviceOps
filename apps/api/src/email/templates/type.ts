@@ -2,8 +2,7 @@ export interface EmailRegistry {
     "url": { email: string; verifyUrl: string, expiresIn?: string };
     "reset": { email: string; forgotPasswordUrl: string, expiresIn?: string };
     "otp": { email: string; code: string, expiresIn?: string };
-    "resetWarn": { email: string; };
-    "forgotPassword": { forgotPasswordUrl: string, expiresIn?: string };
+    "resetWarn": { email: string, expiresIn?: string };
 }
 
 export type EmailTemplateRegistry = {

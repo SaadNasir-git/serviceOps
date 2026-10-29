@@ -13,7 +13,7 @@ export class UserService {
     ) { }
 
     async createUser(dto: createUser) {
-        const passwordHash = await argon.hash(dto.password);
+        const passwordHash = (await argon.hash(dto.password)).toString();
         try {
             const [created] = await this.db
                 .insert(users)
@@ -44,12 +44,19 @@ export class UserService {
                 userId: userDevices.userId,
                 email: users.email,
                 name: users.name,
-                refreshToken: userDevices.refreshTokenHash,
+                refreshTokenHash: userDevices.refreshTokenHash,
                 role: users.role
             })
             .from(userDevices)
             .innerJoin(users, eq(users.id, userDevices.userId))
             .where(eq(userDevices.id, deviceId));
         return user;
+    }
+
+    async updateUserPassword(newPassword: string) {
+        const passwordHash = (await argon.hash(newPassword)).toString();
+        await this.db.update(users).set({
+            passwordHash
+        }).returning({ userId: users.id });
     }
 }
