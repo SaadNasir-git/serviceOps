@@ -1,7 +1,7 @@
 import { Button, Heading, Link, Section, Text } from "@react-email/components";
 import { EmailTemplateRegistry } from "../type.js";
 
-export function ForgotPasswordEmail(data: EmailTemplateRegistry['forgotPassword']) {
+export function ForgotPasswordEmail(data: EmailTemplateRegistry['reset']) {
     const resetUrl = data.forgotPasswordUrl;
 
     return (
