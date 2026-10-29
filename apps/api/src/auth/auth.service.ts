@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, Res } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Res, UnauthorizedException } from '@nestjs/common';
 import { createUser } from './dto/create-user.dto.js';
 import { UserService } from '../user/user.service.js';
 import { LoginDto, LoginStrategy } from './dto/login.dto.js';
@@ -10,7 +10,6 @@ import { EmailService } from '../email/email.service.js';
 import { hmac, verifyHmac } from '../common/hmac.js';
 import type { FastifyReply } from 'fastify';
 import { UserDeviceService } from '../user/device/device.service.js';
-import { unique } from 'drizzle-orm/pg-core';
 
 type RefreshToken = { deviceId: string; iat: number };
 const cookiePath = `${process.env.PREFIX}/auth`;
@@ -26,7 +25,10 @@ export class AuthService {
     ) { }
 
     async createUser(dto: createUser) {
-        return this.userService.createUser(dto);
+        await this.userService.createUser(dto);
+        return {
+            message: "User created successfully"
+        }
     }
 
     async login(dto: LoginDto, @Res({ passthrough: true }) res: FastifyReply) {
@@ -36,15 +38,11 @@ export class AuthService {
             });
 
             if (!user) {
-                return {
-                    message: "User is not signed up, Signup first."
-                }
+                throw new BadRequestException("User is not signed up, Signup first.")
             }
 
             if (!user.passwordHash) {
-                return {
-                    message: "User signed up with provider before and now trying to login with email."
-                }
+                throw new BadRequestException("User signed up with provider before and now trying to login with email.")
             }
 
             const isCorrect = await argon.verify(user.passwordHash, dto.password);
@@ -124,10 +122,7 @@ export class AuthService {
         const tokenDetails = await this.cacheService.getdel<"AUTH:TOKEN">(`AUTH:TOKEN:${uniqueId}`);
 
         if (!tokenDetails) {
-            res.code(400)
-            return {
-                message: "Verification token has been expired!"
-            };
+            throw new BadRequestException("Verification token has been expired!");
         }
 
         const user = await this.userService.selectUser({ userId: tokenDetails.userId });
@@ -151,36 +146,32 @@ export class AuthService {
             sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60,
             path: cookiePath
-        });
-
+        })
         return res.redirect(tokenDetails.callBackUrl);
     }
 
     async verifyOtp(otp: string, uniqueId: string, res: FastifyReply) {
         if (!uniqueId) {
-            return res.code(400).send({
-                message: "OTP has been expired."
-            })
+            throw new BadRequestException("OTP has been expired.")
         }
 
         const codeDetails = await this.cacheService.get<"AUTH:OTP">(`AUTH:OTP:${uniqueId}`);
         if (!codeDetails) {
-            return res.code(400).send({
-                message: "OTP has been expired."
-            })
+            throw new BadRequestException("OTP has been expired.")
         }
 
         const isCorrect = verifyHmac(otp, codeDetails.code);
 
         if (!isCorrect) {
             codeDetails.tries += 1;
+            console.log(codeDetails.tries)
             if (codeDetails.tries >= 5) {
                 await this.cacheService.del([`AUTH:OTP:${uniqueId}`, `AUTH:SESSION:${uniqueId}`])
                 res.clearCookie('uniqueId', { path: cookiePath })
                 return res.code(400).send({ message: 'Too many attempts. Please login again.' });
             }
 
-            await this.cacheService.set<"AUTH:OTP">(`AUTH:OTP:${unique}`, codeDetails, { keepExisting: true });
+            await this.cacheService.set<"AUTH:OTP">(`AUTH:OTP:${uniqueId}`, codeDetails, { keepExisting: true });
             return res.code(400).send({
                 message: "Invalid OTP."
             })
@@ -216,12 +207,12 @@ export class AuthService {
 
     async resendOtp(uniqueId: string, res: FastifyReply) {
         if (!uniqueId) {
-            return res.code(400).send({ message: 'Session expired. Please login again.' });
+            throw new BadRequestException('Session expired. Please login again.')
         }
 
         const session = await this.cacheService.get<'AUTH:SESSION'>(`AUTH:SESSION:${uniqueId}`);
         if (!session) {
-            return res.code(400).send({ message: 'Session expired. Please login again.' });
+            throw new BadRequestException('Session expired. Please login again.')
         }
 
         if (Date.now() - session.lastSentAt < 60_000) {
@@ -262,11 +253,11 @@ export class AuthService {
         const decodedPayload = await this.jwtService.verifyAsync<RefreshToken>(refreshToken);
         const user = await this.userService.selectUserByDeviceId(decodedPayload.deviceId);
 
-        const isCorrect = await argon.verify(decodedPayload.deviceId, user.refreshTokenHash);
+        const isCorrect = await argon.verify(user.refreshTokenHash, refreshToken);
 
         if (!isCorrect) {
             res.clearCookie('refreshToken', { path: cookiePath });
-            return res.code(401).send({ message: 'Session revoked. Please log in again.' });
+            throw new UnauthorizedException('Session revoked. Please log in again.')
         }
 
         const accessToken = await this.jwtService.signAsync({
@@ -284,17 +275,17 @@ export class AuthService {
 
     async rotateRefreshToken(refreshToken: string, res: FastifyReply) {
         if (!refreshToken) {
-            return res.code(401).send({ message: 'Unauthorized' });
+            throw new UnauthorizedException("Unauthorized")
         }
 
         const decodedPayload = await this.jwtService.verifyAsync<RefreshToken>(refreshToken);
 
         const user = await this.userService.selectUserByDeviceId(decodedPayload.deviceId);
 
-        const isCorrect = await argon.verify(refreshToken, user.refreshTokenHash);
+        const isCorrect = await argon.verify(user.refreshTokenHash, refreshToken);
         if (!isCorrect) {
             res.clearCookie('refreshToken', { path: cookiePath });
-            return res.code(401).send({ message: 'Session revoked. Please log in again.' });
+            throw new UnauthorizedException('Session revoked. Please log in again.');
         }
 
         const accessToken = await this.jwtService.signAsync({
@@ -309,7 +300,7 @@ export class AuthService {
         const shouldRotate = ageSeconds >= 24 * 60 * 60;
 
         if (!shouldRotate) {
-            return res.send({ accessToken });
+            return { accessToken }
         }
 
         const newRefreshToken = await this.jwtService.signAsync({
@@ -372,16 +363,12 @@ export class AuthService {
         const decodedPayload = await this.jwtService.verifyAsync<{ userId: string; tokenId: string; purpose: string }>(token);
 
         if (decodedPayload.purpose !== 'forgot-password') {
-            return res.code(400).send({
-                message: "Invalid Token"
-            })
+            throw new BadRequestException("Invalid Token");
         }
 
         const tokenId = await this.cacheService.get<"AUTH:RESET">(`AUTH:RESET:${decodedPayload.userId}`);
         if (!tokenId || tokenId !== decodedPayload.tokenId) {
-            return res.code(400).send({
-                message: "Token has been expired"
-            })
+            throw new BadRequestException("Token has been expired");
         }
 
         await this.cacheService.del(`AUTH:RESET:${decodedPayload.userId}`);
@@ -401,12 +388,15 @@ export class AuthService {
             await this.userDeviceService.deleteUserDevice(decodedPayload.deviceId);
         }
 
-        await res.clearCookie('refreshToken', { path: cookiePath }).send({ message: 'Loged Out' });
+        res.clearCookie('refreshToken', { path: cookiePath })
+        return {
+            message: 'Loged Out'
+        }
     }
 
     async logOutAll(refreshToken: string, res: FastifyReply) {
         if (!refreshToken) {
-            return res.code(401).send({ message: "Unauthorized" });
+            throw new UnauthorizedException("Unauthorized");
         }
 
         const decodedPayload = await this.jwtService.verifyAsync<RefreshToken>(refreshToken);
@@ -415,6 +405,7 @@ export class AuthService {
         await this.userDeviceService.deleteAllUserDevices(user.userId);
 
         res.clearCookie('refreshToken', { path: cookiePath });
+
         return {
             message: 'Logged out of all devices.'
         }

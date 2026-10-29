@@ -27,7 +27,6 @@
     "@nestjs/jwt": "^12.0.3",
     "@nestjs/observe": "^0.3.0",
     "@nestjs/platform-fastify": "^12.2.0",
-    "@nestjs/swagger": "^12.0.4",
     "@react-email/components": "^1.0.12",
     "argon2": "^0.45.1",
     "bullmq": "^6.5.0",
@@ -43,10 +42,12 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@fastify/static": "^10.1.8",
     "@nestjs/cli": "^12.0.0",
     "@nestjs/mau": "^0.2.6",
     "@nestjs/microservices": "^12.2.0",
     "@nestjs/schematics": "^12.0.0",
+    "@nestjs/swagger": "^12.0.5",
     "@nestjs/testing": "^12.0.1",
     "@repo/database": "workspace:*",
     "@repo/typescript-config": "workspace:*",

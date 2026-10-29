@@ -1,0 +1,2217 @@
+{
+  "type": "base",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "913fe773-cff6-4afc-a583-ac12ea5860e4",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "activity_action"
+      ],
+      "writes": [
+        "s|enum|public.activity_action",
+        "n|enum|public.activity_action",
+        "e|enum|public.activity_action",
+        "n|type|public.activity_action"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "milestone_status"
+      ],
+      "writes": [
+        "s|enum|public.milestone_status",
+        "n|enum|public.milestone_status",
+        "e|enum|public.milestone_status",
+        "n|type|public.milestone_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "project_milestone_status"
+      ],
+      "writes": [
+        "s|enum|public.project_milestone_status",
+        "n|enum|public.project_milestone_status",
+        "e|enum|public.project_milestone_status",
+        "n|type|public.project_milestone_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "project_priority"
+      ],
+      "writes": [
+        "s|enum|public.project_priority",
+        "n|enum|public.project_priority",
+        "e|enum|public.project_priority",
+        "n|type|public.project_priority"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "project_status"
+      ],
+      "writes": [
+        "s|enum|public.project_status",
+        "n|enum|public.project_status",
+        "e|enum|public.project_status",
+        "n|type|public.project_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "task_status"
+      ],
+      "writes": [
+        "s|enum|public.task_status",
+        "n|enum|public.task_status",
+        "e|enum|public.task_status",
+        "n|type|public.task_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "user_role"
+      ],
+      "writes": [
+        "s|enum|public.user_role",
+        "n|enum|public.user_role",
+        "e|enum|public.user_role",
+        "n|type|public.user_role"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "activity_log"
+      ],
+      "writes": [
+        "s|tbl|public.activity_log",
+        "n|tbl|public.activity_log",
+        "e|tbl|public.activity_log",
+        "n|rel|public.activity_log",
+        "n|type|public.activity_log",
+        "n|rel|public.activity_log_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.activity_action"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "category"
+      ],
+      "writes": [
+        "s|tbl|public.category",
+        "n|tbl|public.category",
+        "e|tbl|public.category",
+        "n|rel|public.category",
+        "n|type|public.category",
+        "n|rel|public.category_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "milestones"
+      ],
+      "writes": [
+        "s|tbl|public.milestones",
+        "n|tbl|public.milestones",
+        "e|tbl|public.milestones",
+        "n|rel|public.milestones",
+        "n|type|public.milestones",
+        "n|rel|public.milestones_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.milestone_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_members"
+      ],
+      "writes": [
+        "s|tbl|public.project_members",
+        "n|tbl|public.project_members",
+        "e|tbl|public.project_members",
+        "n|rel|public.project_members",
+        "n|type|public.project_members",
+        "n|rel|public.project_members_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_milestone"
+      ],
+      "writes": [
+        "s|tbl|public.project_milestone",
+        "n|tbl|public.project_milestone",
+        "e|tbl|public.project_milestone",
+        "n|rel|public.project_milestone",
+        "n|type|public.project_milestone",
+        "n|rel|public.project_milestone_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.project_milestone_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_payment"
+      ],
+      "writes": [
+        "s|tbl|public.project_payment",
+        "n|tbl|public.project_payment",
+        "e|tbl|public.project_payment",
+        "n|rel|public.project_payment",
+        "n|type|public.project_payment",
+        "n|rel|public.project_payment_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "project"
+      ],
+      "writes": [
+        "s|tbl|public.project",
+        "n|tbl|public.project",
+        "e|tbl|public.project",
+        "n|rel|public.project",
+        "n|type|public.project",
+        "n|rel|public.project_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.project_priority",
+        "n|enum|public.project_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "task"
+      ],
+      "writes": [
+        "s|tbl|public.task",
+        "n|tbl|public.task",
+        "e|tbl|public.task",
+        "n|rel|public.task",
+        "n|type|public.task",
+        "n|rel|public.task_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.task_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "technicians"
+      ],
+      "writes": [
+        "s|tbl|public.technicians",
+        "n|tbl|public.technicians",
+        "e|tbl|public.technicians",
+        "n|rel|public.technicians",
+        "n|type|public.technicians",
+        "n|rel|public.technicians_pkey",
+        "n|rel|public.technicians_technician_id_key"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "user_device"
+      ],
+      "writes": [
+        "s|tbl|public.user_device",
+        "n|tbl|public.user_device",
+        "e|tbl|public.user_device",
+        "n|rel|public.user_device",
+        "n|type|public.user_device",
+        "n|rel|public.user_device_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "user"
+      ],
+      "writes": [
+        "s|tbl|public.user",
+        "n|tbl|public.user",
+        "e|tbl|public.user",
+        "n|rel|public.user",
+        "n|type|public.user",
+        "n|rel|public.user_pkey",
+        "n|rel|public.user_email_key"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.user_role"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "activity_log"
+      ],
+      "writes": [
+        "s|fk|public.activity_log.activity_log_actor_id_user_id_fkey",
+        "n|fk|public.activity_log.activity_log_actor_id_user_id_fkey",
+        "e|fk|public.activity_log.activity_log_actor_id_user_id_fkey",
+        "n|con|public.activity_log.activity_log_actor_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.activity_log",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.activity_log.actor_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "milestones"
+      ],
+      "writes": [
+        "s|fk|public.milestones.milestones_project_milestone_id_project_milestone_id_fkey",
+        "n|fk|public.milestones.milestones_project_milestone_id_project_milestone_id_fkey",
+        "e|fk|public.milestones.milestones_project_milestone_id_project_milestone_id_fkey",
+        "n|con|public.milestones.milestones_project_milestone_id_project_milestone_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.milestones",
+        "n|sch|public",
+        "n|tbl|public.project_milestone",
+        "n|sch|public",
+        "n|col|public.milestones.project_milestone_id",
+        "n|col|public.project_milestone.id",
+        "e|uniqueness|public.project_milestone.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_members"
+      ],
+      "writes": [
+        "s|fk|public.project_members.project_members_project_id_project_id_fkey",
+        "n|fk|public.project_members.project_members_project_id_project_id_fkey",
+        "e|fk|public.project_members.project_members_project_id_project_id_fkey",
+        "n|con|public.project_members.project_members_project_id_project_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_members",
+        "n|sch|public",
+        "n|tbl|public.project",
+        "n|sch|public",
+        "n|col|public.project_members.project_id",
+        "n|col|public.project.id",
+        "e|uniqueness|public.project.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_members"
+      ],
+      "writes": [
+        "s|fk|public.project_members.project_members_user_id_user_id_fkey",
+        "n|fk|public.project_members.project_members_user_id_user_id_fkey",
+        "e|fk|public.project_members.project_members_user_id_user_id_fkey",
+        "n|con|public.project_members.project_members_user_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_members",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.project_members.user_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_members"
+      ],
+      "writes": [
+        "s|fk|public.project_members.project_members_assigned_by_user_id_fkey",
+        "n|fk|public.project_members.project_members_assigned_by_user_id_fkey",
+        "e|fk|public.project_members.project_members_assigned_by_user_id_fkey",
+        "n|con|public.project_members.project_members_assigned_by_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_members",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.project_members.assigned_by",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_milestone"
+      ],
+      "writes": [
+        "s|fk|public.project_milestone.project_milestone_project_id_project_id_fkey",
+        "n|fk|public.project_milestone.project_milestone_project_id_project_id_fkey",
+        "e|fk|public.project_milestone.project_milestone_project_id_project_id_fkey",
+        "n|con|public.project_milestone.project_milestone_project_id_project_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_milestone",
+        "n|sch|public",
+        "n|tbl|public.project",
+        "n|sch|public",
+        "n|col|public.project_milestone.project_id",
+        "n|col|public.project.id",
+        "e|uniqueness|public.project.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_payment"
+      ],
+      "writes": [
+        "s|fk|public.project_payment.project_payment_user_id_user_id_fkey",
+        "n|fk|public.project_payment.project_payment_user_id_user_id_fkey",
+        "e|fk|public.project_payment.project_payment_user_id_user_id_fkey",
+        "n|con|public.project_payment.project_payment_user_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_payment",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.project_payment.user_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project_payment"
+      ],
+      "writes": [
+        "s|fk|public.project_payment.project_payment_milestone_id_milestones_id_fkey",
+        "n|fk|public.project_payment.project_payment_milestone_id_milestones_id_fkey",
+        "e|fk|public.project_payment.project_payment_milestone_id_milestones_id_fkey",
+        "n|con|public.project_payment.project_payment_milestone_id_milestones_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project_payment",
+        "n|sch|public",
+        "n|tbl|public.milestones",
+        "n|sch|public",
+        "n|col|public.project_payment.milestone_id",
+        "n|col|public.milestones.id",
+        "e|uniqueness|public.milestones.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project"
+      ],
+      "writes": [
+        "s|fk|public.project.project_created_by_user_id_fkey",
+        "n|fk|public.project.project_created_by_user_id_fkey",
+        "e|fk|public.project.project_created_by_user_id_fkey",
+        "n|con|public.project.project_created_by_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.project.created_by",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project"
+      ],
+      "writes": [
+        "s|fk|public.project.project_customer_id_user_id_fkey",
+        "n|fk|public.project.project_customer_id_user_id_fkey",
+        "e|fk|public.project.project_customer_id_user_id_fkey",
+        "n|con|public.project.project_customer_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.project.customer_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "project"
+      ],
+      "writes": [
+        "s|fk|public.project.project_category_id_category_id_fkey",
+        "n|fk|public.project.project_category_id_category_id_fkey",
+        "e|fk|public.project.project_category_id_category_id_fkey",
+        "n|con|public.project.project_category_id_category_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.project",
+        "n|sch|public",
+        "n|tbl|public.category",
+        "n|sch|public",
+        "n|col|public.project.category_id",
+        "n|col|public.category.id",
+        "e|uniqueness|public.category.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "task"
+      ],
+      "writes": [
+        "s|fk|public.task.task_milestone_id_milestones_id_fkey",
+        "n|fk|public.task.task_milestone_id_milestones_id_fkey",
+        "e|fk|public.task.task_milestone_id_milestones_id_fkey",
+        "n|con|public.task.task_milestone_id_milestones_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.task",
+        "n|sch|public",
+        "n|tbl|public.milestones",
+        "n|sch|public",
+        "n|col|public.task.milestone_id",
+        "n|col|public.milestones.id",
+        "e|uniqueness|public.milestones.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "task"
+      ],
+      "writes": [
+        "s|fk|public.task.task_assigned_by_user_id_fkey",
+        "n|fk|public.task.task_assigned_by_user_id_fkey",
+        "e|fk|public.task.task_assigned_by_user_id_fkey",
+        "n|con|public.task.task_assigned_by_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.task",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.task.assigned_by",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "task"
+      ],
+      "writes": [
+        "s|fk|public.task.task_assigned_to_user_id_fkey",
+        "n|fk|public.task.task_assigned_to_user_id_fkey",
+        "e|fk|public.task.task_assigned_to_user_id_fkey",
+        "n|con|public.task.task_assigned_to_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.task",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.task.assigned_to",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "technicians"
+      ],
+      "writes": [
+        "s|fk|public.technicians.technicians_technician_id_user_id_fkey",
+        "n|fk|public.technicians.technicians_technician_id_user_id_fkey",
+        "e|fk|public.technicians.technicians_technician_id_user_id_fkey",
+        "n|con|public.technicians.technicians_technician_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.technicians",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.technicians.technician_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "user_device"
+      ],
+      "writes": [
+        "s|fk|public.user_device.user_device_user_id_user_id_fkey",
+        "n|fk|public.user_device.user_device_user_id_user_id_fkey",
+        "e|fk|public.user_device.user_device_user_id_user_id_fkey",
+        "n|con|public.user_device.user_device_user_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.user_device",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.user_device.user_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    }
+  ],
+  "ddl": [
+    {
+      "schema": "public",
+      "name": "activity_log",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "category",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "milestones",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "project_members",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "project_milestone",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "project_payment",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "project",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "task",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "technicians",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "user_device",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "user",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "activity_action",
+      "values": [
+        "USER_UPDATED",
+        "USER_DELETED",
+        "WORK_CREATED",
+        "WORK_UPDATED",
+        "WORK_DELETED"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "milestone_status",
+      "values": [
+        "pending",
+        "in_progress",
+        "completed"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "project_milestone_status",
+      "values": [
+        "draft",
+        "pending_admin",
+        "pending_customer",
+        "approved",
+        "rejected"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "project_priority",
+      "values": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "project_status",
+      "values": [
+        "under_review",
+        "accepted",
+        "rejected",
+        "planning",
+        "canceled",
+        "in_progress",
+        "completed"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "task_status",
+      "values": [
+        "pending",
+        "in_progress",
+        "completed"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "user_role",
+      "values": [
+        "admin",
+        "technician",
+        "customer"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "actor_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "action",
+      "type": "activity_action",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "changes",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "category",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "category_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "category",
+      "name": "name",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "category",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "project_milestone_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "title",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "description",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "status",
+      "type": "milestone_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "sequence",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "amount",
+      "type": "numeric(12,2)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "currency",
+      "type": "varchar(3)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "due_date",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "project_members_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "project_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "user_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "assigned_by",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "leading",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "project_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "status",
+      "type": "project_milestone_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'draft'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "customer_reason",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "admin_reason",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "user_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "milestone_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "paid_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "title",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "created_by",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "customer_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "category_id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "description",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "priority",
+      "type": "project_priority",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'medium'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "status",
+      "type": "project_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'under_review'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "budget_amount",
+      "type": "numeric(12,2)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "currency",
+      "type": "varchar(3)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "due_date",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "task_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "milestone_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "assigned_by",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "assigned_to",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "title",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "description",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "status",
+      "type": "task_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "due_date",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "technician_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "skills",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 1,
+      "default": "'{}'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "properties",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 1,
+      "default": "'{}'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "user_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "refresh_token_hash",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "last_use",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "name",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "email",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "password_hash",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "role",
+      "type": "user_role",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'customer'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "is_verified",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "activity_log_actor_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "actor_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "milestones_project_milestone_id_project_milestone_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "project_milestone_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "project_milestone",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "project_members_project_id_project_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "project_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "project",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "project_members_user_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "project_members_assigned_by_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "assigned_by"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "project_milestone_project_id_project_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "project_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "project",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "project_payment_user_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "project_payment_milestone_id_milestones_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "milestone_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "milestones",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "project_created_by_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "created_by"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "project_customer_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "customer_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "project_category_id_category_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "category_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "category",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "SET NULL",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "task_milestone_id_milestones_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "milestone_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "milestones",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "task_assigned_by_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "assigned_by"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "task_assigned_to_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "assigned_to"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "technicians_technician_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "technician_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "user_device_user_id_user_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "activity_log",
+      "name": "activity_log_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "category",
+      "name": "category_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "milestones",
+      "name": "milestones_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "project_members",
+      "name": "project_members_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "project_milestone",
+      "name": "project_milestone_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "project_payment",
+      "name": "project_payment_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "project",
+      "name": "project_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "task",
+      "name": "task_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "technicians_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "user_device",
+      "name": "user_device_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "user_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "technicians",
+      "name": "technicians_technician_id_key",
+      "nameExplicit": false,
+      "columns": [
+        "technician_id"
+      ],
+      "nullsNotDistinct": false,
+      "entityType": "uniques"
+    },
+    {
+      "schema": "public",
+      "table": "user",
+      "name": "user_email_key",
+      "nameExplicit": false,
+      "columns": [
+        "email"
+      ],
+      "nullsNotDistinct": false,
+      "entityType": "uniques"
+    }
+  ]
+}

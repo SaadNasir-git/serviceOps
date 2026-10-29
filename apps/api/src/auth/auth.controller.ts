@@ -49,7 +49,7 @@ export class AuthController {
 
     @HttpCode(200)
     @Get('refresh')
-    async rotateRefreshToken(@Cookies('refreshToken') refreshToken: string, res: FastifyReply) {
+    async rotateRefreshToken(@Cookies('refreshToken') refreshToken: string, @Res({ passthrough: true }) res: FastifyReply) {
         return this.AuthService.rotateRefreshToken(refreshToken, res);
     }
 
@@ -74,6 +74,6 @@ export class AuthController {
     @HttpCode(200)
     @Post('logout-all')
     async logOutAll(@Cookies('refreshToken') refreshToken: string, @Res({ passthrough: true }) res: FastifyReply) {
-        
+        return this.AuthService.logOutAll(refreshToken, res);
     }
 }
