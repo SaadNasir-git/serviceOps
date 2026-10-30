@@ -58,12 +58,6 @@ export const relations = defineRelations(s, (r) => ({
   },
 
   project: {
-    creator: r.one.users({
-      from: r.projects.createdBy,
-      to: r.users.id,
-      alias: "projectCreator",
-    }),
-
     customer: r.one.users({
       from: r.projects.customerId,
       to: r.users.id,

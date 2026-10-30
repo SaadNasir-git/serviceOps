@@ -16,7 +16,7 @@ export const tasks = pgTable("task", {
     title: varchar("title", { length: 255 }).notNull(),
     description: text("description").notNull(),
     status: taskStatusEnum("status").notNull().default("pending"),
-    dueDate: timestamp("due_date", { withTimezone: true }).notNull(),
+    dueDate: timestamp("due_date", { withTimezone: true, mode: 'string' }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });

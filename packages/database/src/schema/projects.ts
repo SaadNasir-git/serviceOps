@@ -22,15 +22,14 @@ export const projectStatusEnum = pgEnum("project_status", [
 export const projects = pgTable("project", {
     id: uuid("id").primaryKey().defaultRandom(),
     title: varchar("title", { length: 255 }).notNull(),
-    createdBy: uuid("created_by").notNull().references(() => users.id),
     customerId: uuid("customer_id").notNull().references(() => users.id),
     categoryId: integer("category_id").references(() => categories.id, { onDelete: "set null" }),
-    description: text("description"),
+    description: text("description").notNull(),
     priority: projectPriorityEnum("priority").notNull().default("medium"),
     status: projectStatusEnum("status").notNull().default("under_review"),
-    budgetAmount: numeric("budget_amount", { precision: 12, scale: 2 }),
+    budgetAmount: numeric("budget_amount", { precision: 12, scale: 2 }).notNull(),
     currency: varchar("currency", { length: 3 }).notNull(),
-    dueDate: timestamp("due_date", { withTimezone: true }),
+    dueDate: timestamp("due_date", { withTimezone: true, mode: 'string' }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 });

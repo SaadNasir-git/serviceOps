@@ -18,10 +18,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '24h' },
-      }),
-    }),
+        secret: configService.get<string>('JWT_SECRET')
+      })
+    })
   ]
 })
 export class AuthModule { }

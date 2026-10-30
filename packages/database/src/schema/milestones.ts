@@ -18,5 +18,5 @@ export const milestones = pgTable("milestones", {
     sequence: integer("sequence").notNull(),
     amount: numeric("amount", { precision: 12, scale: 2 }).notNull(),
     currency: varchar("currency", { length: 3 }).notNull(),
-    dueDate: timestamp("due_date", { withTimezone: true }).notNull(),
+    dueDate: timestamp("due_date", { withTimezone: true, mode: 'string' }).notNull(),
 });

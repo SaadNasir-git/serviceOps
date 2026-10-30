@@ -13,6 +13,7 @@ import { DrizzleModule } from '@nestjs/drizzle';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { BullModule } from '@nestjs/bullmq';
 import { EmailModule } from './email/email.module.js';
+import { ProjectModule } from './project/project.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -38,7 +39,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     AuthModule,
     CacheModule,
     UserModule,
-    EmailModule
+    EmailModule,
+    ProjectModule
   ],
   controllers: [AppController],
   providers: [AppService, CacheService]
