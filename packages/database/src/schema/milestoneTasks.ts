@@ -7,7 +7,7 @@ export const milestoneStatusEnum = pgEnum("milestone_status", [
     "completed",
 ]);
 
-export const milestones = pgTable("milestones", {
+export const milestoneTasks = pgTable("milestones_task", {
     id: uuid("id").primaryKey().defaultRandom(),
     projectMilestoneId: uuid("project_milestone_id")
         .notNull()

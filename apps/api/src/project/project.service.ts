@@ -6,7 +6,7 @@ import { ProjectRepositry } from './project.repostiry.js';
 import { UserService } from '../user/user.service.js';
 import { getAllQuery } from './types/getAll.query.js';
 import { Role } from '../user/types/roles.js';
-import { categories, projects } from '@repo/database';
+import { categories, projectMembers, projects } from '@repo/database';
 import { and, eq, ilike, or } from 'drizzle-orm';
 import { AccessToken } from '../user/interfaces/accessToken.interface.js';
 
@@ -38,23 +38,31 @@ export class ProjectService {
 
     const conditions = [];
 
+    if (query.filter) {
+      conditions.push(eq(projects.status, query.filter))
+    }
+    if (query.query) {
+      const like = `%${query.query.trim()}%`;
+      conditions.push(
+        or(
+          ilike(projects.title, like),
+          ilike(projects.description, like),
+        )
+      );
+    }
+
     if (user.role === Role.Customer || user.role === Role.Admin) {
-      if (query.filter) {
-        conditions.push(eq(projects.status, query.filter))
-      }
-      if (query.query) {
-        const like = `%${query.query.trim()}%`;
-        conditions.push(
-          or(
-            ilike(projects.title, like),
-            ilike(projects.description, like),
-          )
-        );
-      }
-
       const whereClause = user.role === Role.Admin ? and(...conditions) : and(...conditions, eq(projects.customerId, user.userId));
-
       const rows = await base.leftJoin(categories, eq(projects.categoryId, categories.id)).where(whereClause);
+
+      return rows;
+    } else if (user.role === Role.Technician) {
+      const rows = await this.db
+        .select({ ...fields, leading: projectMembers.leading })
+        .from(projects)
+        .innerJoin(projectMembers, eq(projectMembers.projectId, projects.id))
+        .leftJoin(categories, eq(projects.categoryId, categories.id))
+        .where(and(...conditions, eq(projectMembers.userId, user.userId)));
 
       return rows;
     }

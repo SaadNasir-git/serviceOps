@@ -1,4 +1,4 @@
-import { boolean, integer, pgTable, uuid } from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, unique, uuid } from "drizzle-orm/pg-core";
 import { projects } from "./projects.js";
 import { users } from "./users.js";
 
@@ -13,5 +13,7 @@ export const projectMembers = pgTable("project_members", {
     assignedBy: uuid("assigned_by")
         .notNull()
         .references(() => users.id),
-    leading: boolean("leading").notNull().default(false),
-});
+    leading: boolean("leading").notNull().default(false)
+}, (t) => [
+    unique("project_members_project_id_user_id_unique").on(t.projectId, t.userId)
+]);

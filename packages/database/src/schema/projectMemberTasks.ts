@@ -1,5 +1,5 @@
-import { integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { milestones } from "./milestones.js";
+import { integer, pgEnum, pgTable, text, timestamp, unique, uuid, varchar } from "drizzle-orm/pg-core";
+import { milestoneTasks } from "./milestoneTasks.js";
 import { users } from "./users.js";
 
 export const taskStatusEnum = pgEnum("task_status", [
@@ -8,9 +8,9 @@ export const taskStatusEnum = pgEnum("task_status", [
     "completed",
 ]);
 
-export const tasks = pgTable("task", {
+export const projectMemberTasks = pgTable("project_member_task", {
     id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-    milestoneId: uuid("milestone_id").notNull().references(() => milestones.id, { onDelete: "cascade" }),
+    milestoneTaskId: uuid("milestone_task_id").notNull().references(() => milestoneTasks.id, { onDelete: "cascade" }).unique(),
     assignedBy: uuid("assigned_by").notNull().references(() => users.id),
     assignedTo: uuid("assigned_to").notNull().references(() => users.id),
     title: varchar("title", { length: 255 }).notNull(),

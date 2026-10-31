@@ -4,38 +4,29 @@ import * as s from "./schema/index.js";
 export const relations = defineRelations(s, (r) => ({
   user: {
     devices: r.many.userDevices(),
-
     technicianProfile: r.one.technicians({
       from: r.users.id,
       to: r.technicians.technicianId,
     }),
-
     createdProjects: r.many.projects({
       alias: "projectCreator",
     }),
-
     customerProjects: r.many.projects({
       alias: "projectCustomer",
     }),
-
     projectMemberships: r.many.projectMembers({
       alias: "memberUser",
     }),
-
     assignedMemberships: r.many.projectMembers({
       alias: "memberAssigner",
     }),
-
-    assignedTasks: r.many.tasks({
+    assignedTasks: r.many.projectMemberTasks({
       alias: "taskAssignee",
     }),
-
-    createdTasks: r.many.tasks({
+    createdTasks: r.many.projectMemberTasks({
       alias: "taskCreator",
     }),
-
     payments: r.many.projectPayments(),
-
     activityLogs: r.many.activityLogs(),
   },
 
@@ -63,15 +54,15 @@ export const relations = defineRelations(s, (r) => ({
       to: r.users.id,
       alias: "projectCustomer",
     }),
-
     category: r.one.categories({
       from: r.projects.categoryId,
       to: r.categories.id,
     }),
-
     members: r.many.projectMembers(),
-
-    milestones: r.many.projectMilestones(),
+    milestones: r.many.projectMilestones({
+      from: r.projects.id,
+      to: r.projectMilestones.projectId,
+    }),
   },
 
   projectMembers: {
@@ -79,13 +70,11 @@ export const relations = defineRelations(s, (r) => ({
       from: r.projectMembers.projectId,
       to: r.projects.id,
     }),
-
     user: r.one.users({
       from: r.projectMembers.userId,
       to: r.users.id,
       alias: "memberUser",
     }),
-
     assigner: r.one.users({
       from: r.projectMembers.assignedBy,
       to: r.users.id,
@@ -98,41 +87,28 @@ export const relations = defineRelations(s, (r) => ({
       from: r.projectMilestones.projectId,
       to: r.projects.id,
     }),
-
-    milestones: r.many.milestones(),
+    tasks: r.many.milestoneTasks({
+      from: r.projectMilestones.id,
+      to: r.milestoneTasks.projectMilestoneId,
+    }),
+    payments: r.many.projectPayments({
+      from: r.projectMilestones.id,
+      to: r.projectPayments.projectMilestoneId,
+    }),
   },
 
-  milestones: {
+  milestoneTasks: {
     projectMilestone: r.one.projectMilestones({
-      from: r.milestones.projectMilestoneId,
+      from: r.milestoneTasks.projectMilestoneId,
       to: r.projectMilestones.id,
     }),
-
-    tasks: r.many.tasks({
-      from: r.milestones.id,
-      to: r.tasks.milestoneId,
-    }),
-
-    payments: r.many.projectPayments({
-      from: r.milestones.id,
-      to: r.projectPayments.milestoneId,
-    }),
-  },
-
-  task: {
-    milestone: r.one.milestones({
-      from: r.tasks.milestoneId,
-      to: r.milestones.id,
-    }),
-
     assigner: r.one.users({
-      from: r.tasks.assignedBy,
+      from: r.projectMemberTasks.assignedBy,
       to: r.users.id,
       alias: "taskCreator",
     }),
-
     assignee: r.one.users({
-      from: r.tasks.assignedTo,
+      from: r.projectMemberTasks.assignedTo,
       to: r.users.id,
       alias: "taskAssignee",
     }),
@@ -143,10 +119,9 @@ export const relations = defineRelations(s, (r) => ({
       from: r.projectPayments.userId,
       to: r.users.id,
     }),
-
-    milestone: r.one.milestones({
-      from: r.projectPayments.milestoneId,
-      to: r.milestones.id,
+    projectMilestone: r.one.projectMilestones({
+      from: r.projectPayments.projectMilestoneId,
+      to: r.projectMilestones.id,
     }),
   },
 
